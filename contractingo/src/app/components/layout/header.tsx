@@ -1,5 +1,3 @@
-'use client';
-
 export const Header = () => {
 
     return (
@@ -22,7 +20,7 @@ export const Header = () => {
                         Login
                     </button>
                     {/* Sign Up Button */}
-                    <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded transition-colors text-2xl cursor-pointer">
+                    <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded transition-colors text-1xl cursor-pointer">
                         Sign up
                     </button>
                 </div>
