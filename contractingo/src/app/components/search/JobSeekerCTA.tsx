@@ -9,7 +9,7 @@ export const JobSeekerCTA = () => {
                     Join thousands of skilled workers who found their dream jobs in Canada
                 </p>
                 <button className="bg-white text-green-700 hover:bg-green-50 px-8 py-4 rounded-lg text-lg font-semibold transition-all cursor-pointer transform hover:scale-105 shadow-md hover:shadow-lg">
-                    Sign Up Now - It's Free
+                    Sign Up Now - It&apos;s Free
                 </button>
                 <p className="text-green-50 mt-4 text-sm">
                     ✓ Quick and easy registration
