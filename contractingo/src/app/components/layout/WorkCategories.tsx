@@ -41,16 +41,16 @@ export const WorkCategories = () => {
                     </p>
                 </div>
 
-                {/* House Cleaning */}
+                {/* Website Design */}
                 <div className="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-shadow">
-                    <div className="text-4xl mb-4" role="img" aria-label="cleaning">
-                        🧹
+                    <div className="text-4xl mb-4" role="img" aria-label="website design">
+                        💻
                     </div>
                     <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                        House Cleaning
+                        Website Design
                     </h3>
                     <p className="text-gray-600">
-                        Regular and deep cleaning services for homes and apartments
+                        Professional website development and design for businesses and individuals
                     </p>
                 </div>
 
