@@ -1,3 +1,6 @@
+'use client';
+import Link from 'next/link'
+
 export const JobSeekerCTA = () => {
     return (
         <div className="max-w-4xl mx-auto px-4 mt-12">
@@ -8,9 +11,11 @@ export const JobSeekerCTA = () => {
                 <p className="text-xl text-green-50 mb-6">
                     Join thousands of skilled workers who found their dream jobs in Canada
                 </p>
-                <button className="bg-white text-green-700 hover:bg-green-50 px-8 py-4 rounded-lg text-lg font-semibold transition-all cursor-pointer transform hover:scale-105 shadow-md hover:shadow-lg">
+                <Link 
+                    href="/users/signup"
+                    className="bg-white text-green-700 hover:bg-green-50 px-8 py-4 rounded-lg text-lg font-semibold transition-all cursor-pointer transform hover:scale-105 shadow-md hover:shadow-lg">
                     Sign Up Now - It&apos;s Free
-                </button>
+                </Link>
                 <p className="text-green-50 mt-4 text-sm">
                     ✓ Quick and easy registration
                     <span className="mx-2">•</span>
