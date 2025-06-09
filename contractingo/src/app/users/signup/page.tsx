@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
 import { Header } from '@/app/components/layout';
+import { authService } from '@/app/services/auth';
 
 // Data for form
 interface FormData {
@@ -78,10 +79,32 @@ export default function SignUp (){
         }
 
         setIsLoading(true);
-        // try { POST Method to create user }
-        setIsLoading(false);
-        router.push("/");
-            
+        try {
+            const result = await authService.signUp({
+                email: formData.email,
+                password: formData.password,
+                firstName: formData.firstName,
+                lastName: formData.lastName
+            });
+
+            if(!result.success) {
+                throw new Error(result.error);
+            }
+
+            if(result.data?.token) {
+                localStorage.setItem('token', result.data?.token);
+            }
+
+            router.push("/");
+
+        } catch (error) {
+            setErrors(prev => ({
+                ...prev,
+                submit: error instanceof Error ? error.message  : 'Error Occured during signup'
+            }));
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
