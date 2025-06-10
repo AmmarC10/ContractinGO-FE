@@ -1,3 +1,6 @@
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { auth } from '@/app/lib/firebase';
+
 interface SignUpData {
     email: string;
     password: string;
@@ -31,5 +34,25 @@ export const authService = {
 
             const result = await response.json();
             return result;
+    },
+
+    async gmailSignUp(): Promise<AuthResponse> {
+        const provider = new GoogleAuthProvider();
+        const result = await signInWithPopup(auth, provider);
+
+        const response = await fetch(`${API_BASE_URL}/firebase_auth/gmailSignUp/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                token: await result.user.getIdToken(),
+                email: result.user.email,
+                displayName: result.user.displayName
+            })
+        });
+
+        const data = await response.json();
+        return data;
     }
 }
