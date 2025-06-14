@@ -19,9 +19,11 @@ export const Header = () => {
                 {/* Navigation and Sign Up */}
                 <div className="flex items-center gap-6">
                     {/* Login Button */}
-                    <button className="bg-white hover:bg-gray-50 text-green-600 hover:text-green-700 font-semibold px-5 py-2 rounded transition-colors text-1xl hover:border-green-600 cursor-pointer border-green-600">
+                    <Link 
+                        href="/users/login"
+                        className="bg-white hover:bg-gray-50 text-green-600 hover:text-green-700 font-semibold px-5 py-2 rounded transition-colors text-1xl hover:border-green-600 cursor-pointer border-green-600">
                         Login
-                    </button>
+                    </Link>
                     {/* Sign Up Button */}
                     <Link 
                         href="/users/signup"

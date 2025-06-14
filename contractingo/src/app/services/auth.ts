@@ -8,6 +8,11 @@ interface SignUpData {
     lastName: string;
 }
 
+interface SignInData {
+    email: string;
+    password: string;
+}
+
 interface AuthResponse {
     success?: boolean;
     error?: string;
@@ -54,5 +59,18 @@ export const authService = {
 
         const data = await response.json();
         return data;
+    },
+
+    async signIn(data: SignInData): Promise<AuthResponse> {
+        const response = await fetch(`${API_BASE_URL}/firebase_auth/login/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        return result;
     }
 }
