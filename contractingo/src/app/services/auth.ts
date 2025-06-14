@@ -1,4 +1,4 @@
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
 import { auth } from '@/app/lib/firebase';
 
 interface SignUpData {
@@ -42,23 +42,31 @@ export const authService = {
     },
 
     async gmailSignUp(): Promise<AuthResponse> {
-        const provider = new GoogleAuthProvider();
-        const result = await signInWithPopup(auth, provider);
+        try {
+            const provider = new GoogleAuthProvider();
+            const result = await signInWithPopup(auth, provider);
 
-        const response = await fetch(`${API_BASE_URL}/firebase_auth/gmailSignUp/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                token: await result.user.getIdToken(),
-                email: result.user.email,
-                displayName: result.user.displayName
-            })
-        });
+            const response = await fetch(`${API_BASE_URL}/firebase_auth/gmailSignUp/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: await result.user.getIdToken(),
+                    email: result.user.email,
+                    displayName: result.user.displayName
+                })
+            });
 
-        const data = await response.json();
-        return data;
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            return {
+                success: false,
+                error: error instanceof Error ? error.message : 'Authentication failed'
+            };
+        }
     },
 
     async signIn(data: SignInData): Promise<AuthResponse> {
@@ -72,5 +80,10 @@ export const authService = {
 
         const result = await response.json();
         return result;
+    },
+
+    async signOut() {
+        await signOut(auth);
+        localStorage.removeItem('token');
     }
 }
